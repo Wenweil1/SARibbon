@@ -5,6 +5,8 @@
 #include "SARibbonPannel.h"
 #include "SARibbonMainWindow.h"
 #include "SARibbonQuickAccessBar.h"
+#include "SARibbonApplicationButton.h"
+#include "SAWindowButtonGroup.h"
 Widget::Widget(QWidget* parent) : QWidget(parent), ui(new Ui::Widget)
 {
     // 注意：ui文件中有个QVBoxLayout布局
@@ -54,6 +56,11 @@ void Widget::buildRibbon(SARibbonBar* bar)
     SARibbonQuickAccessBar* qbar = mRibbonBar->quickAccessBar();
     qbar->addAction(createAction("undo", ":/icon/icon/undo.svg"));
     qbar->addAction(createAction("redo", ":/icon/icon/redo.svg"));
+	setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
+
+	SAWindowButtonGroup* hHH = new SAWindowButtonGroup(this);
+	QHBoxLayout* sdfdf       = new QHBoxLayout(this);
+	qbar->addWidget(hHH);
 }
 
 QAction* Widget::createAction(const QString& text, const QString& iconurl)
